@@ -1,0 +1,31 @@
+{
+  "name": "@orashus/client-storage",
+  "version": "0.0.1",
+  "description": "localStorage or sessionStorage browser API with a wrapper.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orashus/client-storage.git"
+  },
+  "keywords": [
+    "client-storage",
+    "localStorage",
+    "sessionStorage",
+    "browserStorage"
+  ],
+  "author": "orashus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orashus/client-storage/issues"
+  },
+  "homepage": "https://github.com/orashus/client-storage#readme",
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2"
+  }
+}
