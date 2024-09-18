@@ -28,6 +28,7 @@ class CLIENT_STORAGE {
 
   // Storage actions
 
+  /** Gets key from storage */
   save<T>(key: string, val: T) {
     if (this.isOnServer()) {
       this.errorMsg("write to");
@@ -38,16 +39,20 @@ class CLIENT_STORAGE {
     return this.myStorage.setItem(key, JSON.stringify(val));
   };
 
-  get<T>(key: string, options: Required<StorageOptions>): T | null {
+  /**
+   * option { parse: boolean } is false by default
+   * set to true if you want automatic parsing
+  */
+  get<T>(key: string, options?: StorageOptions): T | null {
     if (this.isOnServer()) {
       this.errorMsg("read from");
     }
 
     const val = this.myStorage.getItem(key) ?? (null as T);
 
-    if (options.isString) return val as T;
+    if (options?.parse) return JSON.parse(val as any) as T;
 
-    return JSON.parse(val as any) as T;
+    return val as T;
   };
 
   remove(key: string) {

@@ -1,5 +1,5 @@
 interface StorageOptions {
-  isString: boolean;
+  parse?: boolean;
 }
 
 type StorageType = "local" | "session";
