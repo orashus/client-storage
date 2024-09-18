@@ -1,19 +1,5 @@
-import type { Hello } from "./types/hello";
+// STORAGE TYPES
 
-const obj = {
-  "key": "val"
-}
+export type * from "./client-storage/types";
 
-function test(): Hello {
-  console.log("all good");
-
-  const { key } = obj;
-
-  console.log(key)
-
-  return {
-    yes: true
-  }
-}
-
-test();
+export * from "./client-storage/storage";

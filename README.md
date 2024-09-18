@@ -10,7 +10,7 @@ _`client-storage` can also help in server rendered applications such as those bu
 - __table of content__
   - [installations](#add-to-your-projects-dependencies)
   - [how to use](#how-to-use)
-  - [personal notes](#personal-notes)
+  - [personal notes](./PERSONAL_NOTES.md) # a few notes on my findings
 
 ## Add to your project's `dependencies`
 
@@ -29,21 +29,17 @@ To install run
 
 ## How to use
 
-First
+- First import the `CLIENT_STORAGE` class from `"@orashus/client-storage"`
 
-## Personal Notes
+```ts
+  import { CLIENT_STORAGE } from "@orashus/client-storage";
 
-- __Entry point__
-  
-  Since we'll have to be transpiling our code for both `commonjs (.cjs)` and `esm (.mjs)` (_since those installing the package might opt for either_), we needed to specify the `entry points` for both modules.
+  const localStorage = new CLIENT_STORAGE("local");
 
-  in the `package.json` file, the `"module": "./dist/index.mjs"` key-val is to specify the path to the `esm` module, assuming someone installing the package was using `"type": "module"` in his `package.json`.
+  const sessionStorage = new CLIENT_STORAGE("session");
+```
 
-  If he didn't specify and left the default `"type": "commonjs"` nodejs will be smart enough to use `"main": "./dist/index.js"` in our package.json in place of `commonjs` as his entry point to the package
+___
 
-  - [`tsup`](https://tsup.egoist.dev/) will help us with this transpilation
-  - Also checkout this article about [tree-shaking with tsup](https://dorshinar.me/posts/treeshaking-with-tsup)
+NOTE!! __For the rest of this guide, we'll be using the `localStorage` instance__
 
-- __@types__
-
-  the `"types": "./dist/index.d.ts"` specifies where our types will be kept assuming someone was using `TypeScript` and wanted to use some of our types.
