@@ -1,9 +1,10 @@
 import type { StorageOptions, StorageType } from "./types";
 
 class CLIENT_STORAGE {
-  private myStorage: Storage; // will either be localStorage or sessionStorage;
+  private myStorage: Storage;
   private storageType: StorageType;
 
+  /** @argument {("local" | "session")} type */
   constructor(type: StorageType) {
     if (type === "local") {
       this.myStorage = window.localStorage; // utilizing localStorage;
@@ -22,39 +23,60 @@ class CLIENT_STORAGE {
     new Error(`Cannot ${append} ${this.storageType} storage whilst on the server`);
   }
 
-  private isOnServer(): boolean {
+  isOnServer(): boolean {
     return typeof window === "undefined";
   };
 
-  // Storage actions
-
-  /** Gets key from storage */
-  save<T>(key: string, val: T) {
+  /** Saves a key - value pair to storage
+   * @argument {string} key
+   * @argument {*} val
+   * @returns {void}
+  */
+  save<T>(key: string, val: T): void {
     if (this.isOnServer()) {
       this.errorMsg("write to");
-    }
+    };
 
-    if (typeof val === "string") return this.myStorage.setItem(key, val); // if i stringiy a string, it'll have additional quotes to it.
+    if (typeof val === "string") return this.myStorage.setItem(key, val); // if i stringify a string, it'll have additional quotes to it.
 
     return this.myStorage.setItem(key, JSON.stringify(val));
   };
 
-  /**
-   * option { parse: boolean } is false by default
-   * set to true if you want automatic parsing
+  /** Retrieves a value from storage using it's key in storage
+   * @argument {string} key - key to hold the value in storage
+   * @argument {Object} options - The options for extra functionality
+   * @argument {boolean} [options.parse=false] - option { parse: boolean } is false by default. Set to true if you want automatic parsing
+   * @argument {*} options.fallback - value to return if data not found in storage or an error occurs while reading
   */
-  get<T>(key: string, options?: StorageOptions): T | null {
+  get<T>(key: string, options?: StorageOptions<T>): T | null {
     if (this.isOnServer()) {
+      if (options?.fallback || typeof options?.fallback !== "undefined") return options?.fallback;
+
       this.errorMsg("read from");
     }
 
-    const val = this.myStorage.getItem(key) ?? (null as T);
+    const val = this.myStorage.getItem(key);
 
-    if (options?.parse) return JSON.parse(val as any) as T;
+    if (["undefined", "null"].includes(String(val))) return options?.fallback ?? null;
+
+    if (options?.parse) {
+      try {
+        return JSON.parse(val as string) as T;
+      } catch (error) {
+        if ((error as { message?: string })?.message?.includes("is not valid JSON")) {
+          throw new Error(`"${val}" is not a valid JSON`);
+        } else {
+          return options?.fallback ?? val as T;
+        }
+      }
+    }
 
     return val as T;
   };
 
+  /** removes a single key-value pair from storage
+   * @argument {string} key
+  */
   remove(key: string) {
     if (this.isOnServer()) {
       this.errorMsg("remove from");
@@ -63,6 +85,7 @@ class CLIENT_STORAGE {
     return this.myStorage.removeItem(key);
   };
 
+  /** removes all keys from sto  rage */
   clear() {
     if (this.isOnServer()) {
       this.errorMsg("remove from");

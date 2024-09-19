@@ -59,6 +59,10 @@ __useful links__
 - `npm access public` or `npm access restricted`
   - will update the access of an already published package
 
+- `npm unpublish <test_pkg_name>@<version>`
+  - use to unpublish a single package version
+  - you can unpublish all versions at once by running `npm unpublish <package_name> --force`
+
 - `npm link`
   - to create a global symlink (symbolic link) of the package your are building. use this to test locally.
   - to use the symlink you created and simulate that package in another local project, navigate to the other project and run

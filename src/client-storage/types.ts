@@ -1,5 +1,6 @@
-interface StorageOptions {
+interface StorageOptions<T> {
   parse?: boolean;
+  fallback?: T;
 }
 
 type StorageType = "local" | "session";

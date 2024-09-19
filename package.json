@@ -1,6 +1,6 @@
 {
   "name": "@orashus/client-storage",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "localStorage or sessionStorage browser API with a wrapper.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
