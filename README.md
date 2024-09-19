@@ -1,5 +1,9 @@
 # Welcome to `client-storage` PKG
 
+<div align=center>
+  <img src="https://github.com/orashus/client-storage/blob/main/assets/client-storage%20logo.png?raw=true" />
+</div>
+
 [![current version]( https://img.shields.io/badge/@latest-v0.0.11-gold)](https://www.npmjs.com/package/@orashus/client-storage)
 [![author RashJrEdmund]( https://img.shields.io/badge/Author-RashJrEdmund-blue)](https://github.com/rashjredmund)
 
