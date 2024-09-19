@@ -1,7 +1,7 @@
 # Welcome to `client-storage` PKG
 
-[![current version]( https://img.shields.io/badge/@latest-0.0.9-gold)](https://www.npmjs.com/package/@orashus/client-storage)
-[![current version]( https://img.shields.io/badge/Author-RashJrEdmund-blue)](https://github.com/rashjredmund)
+[![current version]( https://img.shields.io/badge/@latest-v0.0.11-gold)](https://www.npmjs.com/package/@orashus/client-storage)
+[![author RashJrEdmund]( https://img.shields.io/badge/Author-RashJrEdmund-blue)](https://github.com/rashjredmund)
 
 __What is client-storage__
 

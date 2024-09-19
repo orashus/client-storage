@@ -42,13 +42,17 @@ class CLIENT_STORAGE {
     return this.myStorage.setItem(key, JSON.stringify(val));
   };
 
+  // function overloads for the get() method
+  get<T>(key: string): string | null;
+  get<T>(key: string, options: { parse?: false, fallback?: T }): string | null;
+  get<T>(key: string, options?: { parse?: true, fallback?: T }): T | null;
   /** Retrieves a value from storage using it's key in storage
    * @argument {string} key - key to hold the value in storage
    * @argument {Object} options - The options for extra functionality
    * @argument {boolean} [options.parse=false] - option { parse: boolean } is false by default. Set to true if you want automatic parsing
    * @argument {*} options.fallback - value to return if data not found in storage or an error occurs while reading
   */
-  get<T>(key: string, options?: StorageOptions<T>): T | null {
+  get<T>(key: string, options?: StorageOptions<T>): string | T | null {
     if (this.isOnServer()) {
       if (options?.fallback || typeof options?.fallback !== "undefined") return options?.fallback;
 
@@ -61,7 +65,7 @@ class CLIENT_STORAGE {
 
     if (options?.parse) {
       try {
-        return JSON.parse(val as string) as T;
+        return JSON.parse(val!) as T;
       } catch (error) {
         if ((error as { message?: string })?.message?.includes("is not valid JSON")) {
           throw new Error(`"${val}" is not a valid JSON`);
