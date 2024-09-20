@@ -6,6 +6,10 @@ class CLIENT_STORAGE {
 
   /** @argument {("local" | "session")} type */
   constructor(type: StorageType) {
+    if (this.isOnServer()) {
+      this.errorMsg("initialize");
+    }
+
     if (type === "local") {
       this.myStorage = window.localStorage; // utilizing localStorage;
     } else if (type === "session") {
@@ -19,8 +23,8 @@ class CLIENT_STORAGE {
     this.storageType = type;
   };
 
-  private errorMsg(append: "write to" | "read from" | "remove from") {
-    new Error(`Cannot ${append} ${this.storageType} storage whilst on the server`);
+  private errorMsg(append: "write to" | "read from" | "remove from" | "initialize") {
+    throw new Error(`Cannot ${append} ${this.storageType} storage whilst on the server`);
   }
 
   isOnServer(): boolean {
