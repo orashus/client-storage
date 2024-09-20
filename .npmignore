@@ -9,6 +9,7 @@ tsup.config.ts
 
 # markdown
 PERSONAL_NOTES.md
+MAN.md
 
 # assets
 assets/

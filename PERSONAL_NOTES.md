@@ -7,6 +7,7 @@ __table of content__
 - [Configuring your pkg](#configuring-your-packagejson-file)
 - [Cool npm cli commands](#cool-npm-cli-commands)
 - [testing pkg](#testing-pkg)
+- [others](#others)
 
 |
 
@@ -77,3 +78,8 @@ __useful links__
 ## Testing PKG
 
 - to test your package locally, use the `npm link` and `npm unlink` commands explained in the section above ([cool npm cli commands](#cool-npm-cli-commands) section)
+
+## Others
+
+- Use the `browser` property to indicate the `entry point` of your app instead of the `main` property if your package is mean to be used on the `client`. This is helpful to hint users that it might rely on primitives that aren't available in Node.js modules (link the `window` object).
+Read more [here](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser)

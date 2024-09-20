@@ -1,8 +1,8 @@
 {
   "name": "@orashus/client-storage",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "localStorage or sessionStorage browser API with a wrapper.",
-  "main": "./dist/index.js",
+  "browser": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "man": ["./MAN.md"],
@@ -19,7 +19,10 @@
     "sessionStorage",
     "browserStorage"
   ],
-  "author": "orashus",
+  "author": {
+    "name": "orashus",
+    "url": "https://orashus.vercel.app"
+  },
   "license": "MIT",
   "homepage": "https://github.com/orashus/client-storage#readme",
   "bugs": {
