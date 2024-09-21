@@ -1,4 +1,4 @@
-# Welcome to `client-storage` PKG
+# Welcome to `@orashus/client-storage` PKG
 
 <div align=center>
   <img src="https://github.com/orashus/client-storage/blob/main/assets/client-storage%20logo.png?raw=true" />
